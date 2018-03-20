@@ -1,14 +1,28 @@
-const expect = require('expect')
-const request = require('supertest')
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let should = chai.should();
+
 
 const app = require('./../app.js')
+chai.use(chaiHttp);
 
 
-describe('get /api', () => {
+describe('get 200 from /api', () => {
   it('should call the api', (done) => {
-    request(app)
+      chai.request(app)
       .get('/api')
-      .expect(200)
-      .end(done)
+      .end((err, res) => {
+                res.should.have.status(200);
+              done();
+            });
       })
-  })
+
+    // it('should call the api with a number parameter and see it in the response',
+    //  (done) => {
+    //   request(app)
+    //     .get('/api?number=100')
+    //     .expect(200)
+    //     .expect(res).to.be.json
+    //     .end(done)
+    //     })
+    })
