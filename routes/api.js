@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var dao = require('../dao/user');
 
 router.get('/', function(req, res, next) {
   res.statusCode = 200;
@@ -7,5 +8,9 @@ router.get('/', function(req, res, next) {
   res.send('Your number is:' + number);
 });
 
+router.post('/',  function(req, res) {
+  dao.createEntry(req.query.userId)
+  .then(() => res.sendStatus(200))
+});
 
 module.exports = router;

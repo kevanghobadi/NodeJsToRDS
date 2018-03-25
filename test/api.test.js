@@ -7,8 +7,8 @@ const app = require('./../app.js')
 chai.use(chaiHttp);
 
 
-describe('get 200 from /api', () => {
-  it('should call the api', (done) => {
+describe('get 200 from the get /api', () => {
+  it('should call the get api', (done) => {
       chai.request(app)
       .get('/api')
       .end((err, res) => {
@@ -27,3 +27,15 @@ describe('get 200 from /api', () => {
                 });
           })
     })
+
+    describe('get 200 from the post /api', () => {
+      it('should call the post api', (done) => {
+          chai.request(app)
+          .post('/api')
+          .end((err, res) => {
+                    res.should.have.status(200);
+                  done();
+                });
+          })
+
+  })
